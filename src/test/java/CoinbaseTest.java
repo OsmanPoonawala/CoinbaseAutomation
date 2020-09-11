@@ -11,7 +11,7 @@ public class CoinbaseTest {
 	static String email = "osmanfaisalp@hotmail.com";
 	static String pass = "bapva7-qepgiM-citrih";
 	static String[] requestedCoins = {"ethereum", "chainlink", "tether"};
-	static ArrayList<Integer> coinPrices = new ArrayList<Integer>();
+	static ArrayList<Double> coinPrices = new ArrayList<Double>();
 	
 	public static void main(String[] args) {
 		
@@ -105,8 +105,10 @@ public class CoinbaseTest {
 			}
 			
 			try {
-				String coinPrice = driver.findElement(By.xpath("//span[@class='AssetChartAmount__Number-sc-1b4douf-1 AWmny']")).getText();
-				coinPrices.add(Integer.parseInt(coinPrice));
+				String coinPriceInt = driver.findElement(By.xpath("//span[@class='AssetChartAmount__Number-sc-1b4douf-1 AWmny']")).getText();
+				String coinPriceDecimal = driver.findElement(By.cssSelector("div.Transitioner__Container-sc-1nlar1d-0.fmqQye div.moduleFade__Frame-sc-53f9yi-0.eCGjpA div.Flex-l69ttv-0.kNzJnP div.Flex-l69ttv-0.Layout__Container-sc-140tb7h-0.iOtOlJ div.Flex-l69ttv-0.LayoutDesktop__AppWrapper-bh368c-1.jnVjyC div.Flex-l69ttv-0.LayoutDesktop__ContentContainer-bh368c-3.cVvWeI div.Flex-l69ttv-0.LayoutDesktop__Wrapper-bh368c-2.kknCrF:nth-child(3) div.Flex-l69ttv-0.LayoutDesktop__Content-bh368c-4.hSskCm div.styles__OuterContainer-ehviky-0.jaHWnl div.Transitioner__Container-sc-1nlar1d-0.fmqQye div.moduleFade__Frame-sc-53f9yi-0.eCGjpA div.styles__InnerContainer-ehviky-1.eUGEHB div.Transitioner__Container-sc-1nlar1d-0.fmqQye div.moduleFade__Frame-sc-53f9yi-0.eCGjpA div.Flex-l69ttv-0.kvilOX div.Flex-l69ttv-0.AssetOverview__OverviewBody-sc-1y6aknu-1.fvNaNq div.Flex-l69ttv-0.AssetOverview__ChartColumn-sc-1y6aknu-2.cEazxh:nth-child(1) div.Flex-l69ttv-0.AssetOverview__ChartContainer-sc-1y6aknu-4.kQNFbI div.Transitioner__Container-sc-1nlar1d-0.fmqQye:nth-child(1) div.moduleFade__Frame-sc-53f9yi-0.eCGjpA div.AssetChart__ChartContainer-xr1uk5-0.bCHGko div.Transitioner__Container-sc-1nlar1d-0.fmqQye div.moduleFade__Frame-sc-53f9yi-0.eCGjpA div.Chart__Wrapper-sc-11ivqj-0.hpfldP div.Flex-l69ttv-0.Chart__ControlBar-sc-11ivqj-2.bfPpxX:nth-child(1) div.AssetChartHeader__Container-sc-111iush-0.fBcijN div.Flex-l69ttv-0.AssetChartAmount__Wrapper-sc-1b4douf-0.bIaMsv:nth-child(1) > span.AssetChartAmount__AmountSuper-sc-1b4douf-2.hWKAUI:nth-child(3)")).getText();
+				String coinPrice = coinPriceInt + coinPriceDecimal;
+				coinPrices.add(Double.parseDouble(coinPrice));
 			} catch (Exception e) {
 			}
 						
