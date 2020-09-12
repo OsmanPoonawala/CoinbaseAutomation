@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CoinbaseTest {
 	
@@ -32,13 +33,18 @@ public class CoinbaseTest {
 				e.printStackTrace();
 			}
 		}
+	
 	}
 	
 	public static void init() {
 		
+		ChromeOptions options = new ChromeOptions();
+		String userAgent = RandomUserAgent.getRandomUserAgent();
+		options.addArguments(userAgent);
+		
 		String projectpath = System.getProperty("user.dir");
 		System.setProperty("webdriver.chrome.driver", projectpath + "//drivers/chromedriver/chromedriver");
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.get(targetUrl);
 		
@@ -99,7 +105,7 @@ public class CoinbaseTest {
 			driver.get(targetUrl + "/price/" + requestedCoins[i]);
 			
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(7000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -117,6 +123,7 @@ public class CoinbaseTest {
 		for (int i = 0; i < coinPrices.size(); i++) {
 			System.out.println(coinPrices.get(i));
 		}
+		coinPrices.clear();
 	}
 	
 }
